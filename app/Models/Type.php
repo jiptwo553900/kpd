@@ -15,6 +15,7 @@ class Type extends Model
 
     const AR_FIELDS = [
         'name' => 'name',
+        'plural_name' => 'plural_name',
         'description' => 'description',
     ];
 
