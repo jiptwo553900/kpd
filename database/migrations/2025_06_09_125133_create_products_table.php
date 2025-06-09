@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create(Constants::AR_TABLES['products'], function (Blueprint $table) {
             $table->id();
             $table->string(Product::AR_FIELDS['name']);
-            $table->string(Product::AR_FIELDS['image'])->nullable();
+            $table->string(Product::AR_FIELDS['img'])->nullable();
             $table->string(Product::AR_FIELDS['kit'])->nullable();
             $table->text(Product::AR_FIELDS['description'])->nullable();
             $table->json(Product::AR_FIELDS['specs'])->nullable();
-            $table->float(Product::AR_FIELDS['price']);
+            $table->float(Product::AR_FIELDS['price'])->nullable();
             $table->float(Product::AR_FIELDS['guarantee'])->nullable();
             $table->boolean(Product::AR_FIELDS['only_legals'])->default(false);
+            $table->integer(Constants::SORT_FIELD)->default(1);
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists(Constants::AR_TABLES['products']);
     }
 };

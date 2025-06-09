@@ -5,28 +5,17 @@ namespace App\Models;
 use App\Constants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Attachment\Attachable;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Concerns\Sortable;
 use Orchid\Screen\AsSource;
 
-class Product extends Model
+class Subtype extends Model
 {
-    use AsSource, HasFactory, Filterable, Attachable, Sortable;
+    use AsSource, HasFactory, Filterable, Sortable;
 
     const AR_FIELDS = [
         'name' => 'name',
-        'img' => 'img',
-        'kit' => 'kit',
-        'description' => 'description',
-        'specs' => 'specs',
-        'price' => 'price',
-        'guarantee' => 'guarantee',
-        'only_legals' => 'only_legals',
-    ];
-
-    protected $casts = [
-        self::AR_FIELDS['specs'] => 'array',
+        'type_id' => 'type_id',
     ];
 
     /**
