@@ -19,6 +19,13 @@ class Subtype extends Model
     ];
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = self::AR_FIELDS;
+
+    /**
      * Get the column name for sorting.
      *
      * @return string

@@ -25,9 +25,21 @@ class Product extends Model
         'only_legals' => 'only_legals',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
     protected $casts = [
         self::AR_FIELDS['specs'] => 'array',
     ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = self::AR_FIELDS;
 
     /**
      * Get the column name for sorting.
