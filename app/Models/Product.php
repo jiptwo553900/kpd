@@ -23,6 +23,7 @@ class Product extends Model
         'price' => 'price',
         'guarantee' => 'guarantee',
         'only_legals' => 'only_legals',
+        'subtype_id' => 'subtype_id',
     ];
 
     /**
