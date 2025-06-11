@@ -23,8 +23,9 @@ return new class extends Migration
             $table->float(Product::AR_FIELDS['price'])->nullable();
             $table->float(Product::AR_FIELDS['guarantee'])->nullable();
             $table->boolean(Product::AR_FIELDS['only_legals'])->default(false);
-            $table->foreignId(Product::AR_FIELDS['subtype_id'])->constrained(Constants::AR_TABLES['subtypes']);
-            $table->integer(Constants::SORT_FIELD)->default(1);
+            $table->foreignId(Product::AR_FIELDS['subtype_id'])
+                ->constrained(Constants::AR_TABLES['subtypes'])
+                ->restrictOnDelete();
             $table->timestamps();
         });
     }

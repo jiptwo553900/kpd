@@ -8,6 +8,7 @@
          'types' => 'types',
          'type_categories' => 'type_categories',
          'subtypes' => 'subtypes',
+         'options' => 'options',
      ];
 
      const SORT_FIELD = 'sort';

@@ -1,7 +1,7 @@
 <?php
 
 use App\Constants;
-use App\Models\Subtype;
+use App\Models\Option;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Constants::AR_TABLES['subtypes'], function (Blueprint $table) {
+        Schema::create(Constants::AR_TABLES['options'], function (Blueprint $table) {
             $table->id();
-            $table->string(Subtype::AR_FIELDS['name']);
-            $table->foreignId(Subtype::AR_FIELDS['type_id'])
-                ->constrained(Constants::AR_TABLES['types'])
-                ->restrictOnDelete();
+            $table->string(Option::AR_FIELDS['code'])->unique();
+            $table->text(Option::AR_FIELDS['value'])->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(Constants::AR_TABLES['subtypes']);
+        Schema::dropIfExists(Constants::AR_TABLES['options']);
     }
 };

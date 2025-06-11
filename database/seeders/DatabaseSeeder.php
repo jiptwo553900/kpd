@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $arData = include('includes/data.php');
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Category::factory()
+            ->sequence(fn (Sequence $sequence) => [
+                Category::AR_FIELDS['name'] => $arCategories[$sequence->index],
+                Category::AR_FIELDS['sort'] => $sequence->index + 1,
+            ])
+            ->count(count($arCategories))
+            ->create();
     }
 }

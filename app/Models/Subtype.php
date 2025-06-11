@@ -5,13 +5,15 @@ namespace App\Models;
 use App\Constants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Concerns\Sortable;
 use Orchid\Screen\AsSource;
 
 class Subtype extends Model
 {
-    use AsSource, HasFactory, Filterable, Sortable;
+    use AsSource, HasFactory, Filterable;
 
     const AR_FIELDS = [
         'name' => 'name',
@@ -25,13 +27,13 @@ class Subtype extends Model
      */
     protected $fillable = self::AR_FIELDS;
 
-    /**
-     * Get the column name for sorting.
-     *
-     * @return string
-     */
-    public function getSortColumnName(): string
+    public function type(): BelongsTo
     {
-        return Constants::SORT_FIELD;
+        return $this->belongsTo(Type::class);
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

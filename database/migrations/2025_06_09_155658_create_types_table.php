@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create(Constants::AR_TABLES['types'], function (Blueprint $table) {
             $table->id();
             $table->string(Type::AR_FIELDS['name']);
-            $table->string(Type::AR_FIELDS['plural_name']);
+            $table->string(Type::AR_FIELDS['plural']);
             $table->text(Type::AR_FIELDS['description'])->nullable();
-            $table->integer(Constants::SORT_FIELD)->default(1);
             $table->timestamps();
         });
     }
